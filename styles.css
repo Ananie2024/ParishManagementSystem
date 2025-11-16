@@ -1,0 +1,939 @@
+/*
+  ==========================================
+  PARISH MANAGEMENT SYSTEM - STYLESHEET
+  ==========================================
+
+  This CSS file styles the Parish Management System application.
+  It uses Tailwind CSS as a base and adds custom styles.
+
+  FILE PURPOSE:
+  - Define colors, spacing, and typography
+  - Style cards, forms, and buttons
+  - Make the site responsive (mobile-friendly)
+  - Add animations and hover effects
+
+  FOR BEGINNERS:
+  - CSS = Cascading Style Sheets (controls appearance)
+  - Selector { property: value; } is the basic syntax
+  - Comments start with /* and end with */
+/* - Read comments to understand each section
+*/
+
+/*
+  ==========================================
+  TAILWIND CSS IMPORTS
+  ==========================================
+  These three lines import Tailwind CSS utilities.
+  Tailwind provides pre-built classes like bg-blue-500, p-4, etc.
+  MUST be at the top of your CSS file!
+*/
+
+@tailwind base;
+/*
+  Imports Tailwind's base styles
+  - Resets browser defaults (removes inconsistencies)
+  - Sets basic typography and spacing
+  - Provides a clean starting point
+*/
+
+@tailwind components;
+/*
+  Imports Tailwind's component styles
+  - Pre-built UI patterns
+  - Form elements, buttons, etc.
+*/
+
+@tailwind utilities;
+/*
+  Imports Tailwind's utility classes
+  - Single-purpose classes: bg-blue-500, p-4, text-center
+  - Most commonly used part of Tailwind
+*/
+
+/*
+  ==========================================
+  CSS CUSTOM PROPERTIES (CSS Variables)
+  ==========================================
+
+  Custom properties are like variables in programming.
+  Define once, use everywhere!
+
+  SYNTAX: --variable-name: value;
+  USAGE: var(--variable-name)
+
+  BENEFITS:
+  - Change colors site-wide from one place
+  - Consistent spacing and sizing
+  - Easy to maintain and update
+*/
+
+:root {
+  /*
+    :root targets the document root (<html> element)
+    Variables defined here are available throughout the entire page
+    This is called "global scope"
+  */
+
+  /* ========== COLORS ========== */
+  /* Main brand colors */
+  --color-primary: #2563eb;        /* Blue - main brand color */
+  --color-primary-dark: #1d4ed8;   /* Darker blue - hover states */
+
+  /* Feedback colors */
+  --color-success: #10b981;        /* Green - success messages */
+  --color-success-light: #d1fae5;  /* Light green - backgrounds */
+  --color-error: #ef4444;          /* Red - error messages */
+  --color-error-light: #fee2e2;    /* Light red - backgrounds */
+
+  /* Text colors */
+  --color-text-primary: #1f2937;   /* Dark gray - main text */
+  --color-text-secondary: #6b7280; /* Medium gray - less important text */
+
+  /* Background colors */
+  --color-background: #f3f4f6;     /* Light gray - page background */
+  --color-white: #ffffff;          /* Pure white - cards, buttons */
+
+  /* ========== SPACING ========== */
+  /* Consistent spacing throughout the site */
+  --spacing-xs: 0.5rem;   /* 8px - very small gaps */
+  --spacing-sm: 1rem;     /* 16px - small gaps */
+  --spacing-md: 1.5rem;   /* 24px - medium gaps */
+  --spacing-lg: 2rem;     /* 32px - large gaps */
+  --spacing-xl: 3rem;     /* 48px - extra large gaps */
+
+  /*
+    rem units are relative to root font size
+    Default: 1rem = 16px
+    Benefits:
+    - Scales with user's font size preferences
+    - Better for accessibility
+    - More flexible than px
+  */
+
+  /* ========== BORDER RADIUS ========== */
+  /* Rounded corners for elements */
+  --radius-sm: 0.25rem;   /* 4px - slight rounding */
+  --radius-md: 0.5rem;    /* 8px - medium rounding */
+  --radius-lg: 0.75rem;   /* 12px - large rounding */
+
+  /* ========== SHADOWS ========== */
+  /* Drop shadows create depth and elevation */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  /* Small shadow - subtle depth */
+
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  /* Medium shadow - cards */
+
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  /* Large shadow - hover effects */
+
+  /*
+    Shadow syntax: horizontal vertical blur spread color
+    rgba(0, 0, 0, 0.1) = black with 10% opacity
+  */
+
+  /* ========== TRANSITIONS ========== */
+  /* Animation durations for smooth effects */
+  --transition-fast: 150ms ease-in-out;
+  --transition-normal: 200ms ease-in-out;
+  --transition-slow: 300ms ease-in-out;
+
+  /*
+    ease-in-out = animation starts slow, speeds up, then slows down
+    Creates natural-feeling animations
+  */
+}
+
+/*
+  ==========================================
+  GLOBAL RESET & BASE STYLES
+  ==========================================
+
+  These styles apply to ALL elements or the entire page.
+  They create a consistent foundation.
+*/
+
+* {
+  /*
+    Universal selector (*) = ALL elements
+    Use sparingly! Only for truly global styles
+  */
+
+  margin: 0;
+  padding: 0;
+  /* Remove default spacing from all elements */
+
+  box-sizing: border-box;
+  /*
+    IMPORTANT: Changes how width/height are calculated
+
+    Without box-sizing:
+    Total width = width + padding + border
+    Example: width: 100px + padding: 20px = 120px total
+
+    With box-sizing: border-box:
+    Total width = width (includes padding and border)
+    Example: width: 100px (padding included) = 100px total
+
+    Makes CSS much easier to work with!
+  */
+}
+
+body {
+  /*
+    <body> contains all visible content
+    These styles affect the entire page
+  */
+
+  /* ========== FONT FAMILY ========== */
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  /*
+    Font stack = list of fallback fonts
+    Browser tries each font until it finds one installed
+
+    -apple-system: Default on macOS/iOS
+    BlinkMacSystemFont: Chrome on macOS
+    'Segoe UI': Windows default
+    Roboto: Android default
+    sans-serif: Generic fallback (always available)
+
+    Result: Page looks native on every operating system!
+  */
+
+  /* ========== COLORS ========== */
+  background-color: var(--color-background);
+  /*
+    var() function uses CSS custom properties
+    var(--variable-name)
+
+    This pulls the value from :root
+  */
+
+  color: var(--color-text-primary);
+  /* Text color for all elements (inherited by children) */
+
+  /* ========== TYPOGRAPHY ========== */
+  line-height: 1.6;
+  /*
+    Space between lines of text
+    1.6 = 160% of font size
+
+    Default (1.0) is too tight
+    1.5-1.8 is ideal for readability
+  */
+
+  /* ========== LAYOUT ========== */
+  min-height: 100vh;
+  /*
+    Minimum height = 100% of viewport height
+
+    vh = viewport height unit
+    100vh = full screen height
+
+    Ensures page fills screen even with little content
+  */
+}
+
+/*
+  ==========================================
+  MAIN CONTAINER
+  ==========================================
+
+  The main wrapper around page content.
+  Centers content and adds spacing.
+*/
+
+.main-container {
+  /*
+    Class selector (.class-name) targets elements with that class
+    Example: <div class="main-container">
+  */
+
+  max-width: 1200px;
+  /*
+    Maximum width on large screens
+    Content won't stretch too wide
+
+    Why? Long lines are hard to read
+    Optimal line length: 50-75 characters
+  */
+
+  margin: 0 auto;
+  /*
+    Centers the container horizontally
+
+    Syntax: margin: top/bottom left/right;
+    0 = no top/bottom margin
+    auto = browser calculates equal left/right margins
+
+    Result: Container is centered!
+  */
+
+  padding: var(--spacing-lg) var(--spacing-sm);
+  /*
+    Adds space inside the container
+
+    Syntax: padding: top/bottom left/right;
+    Uses custom properties for consistency
+  */
+}
+
+/*
+  ==========================================
+  HEADER SECTION
+  ==========================================
+
+  The top section with title and subtitle.
+*/
+
+.header {
+  text-align: center;
+  /* Centers all text inside horizontally */
+
+  margin-bottom: var(--spacing-xl);
+  /* Space below header before next section */
+}
+
+.header-title {
+  /* The main page heading */
+
+  font-size: 2.5rem;
+  /*
+    2.5rem = 2.5 × 16px = 40px (default)
+    rem scales with user's font size preference
+  */
+
+  font-weight: 700;
+  /*
+    Font thickness/boldness
+    Scale: 100 (thin) to 900 (black)
+    400 = normal
+    700 = bold
+  */
+
+  color: var(--color-primary);
+  /* Blue color using our custom property */
+
+  margin-bottom: var(--spacing-xs);
+  /* Small space between title and subtitle */
+}
+
+/* RESPONSIVE: Adjust title size on mobile */
+@media (max-width: 768px) {
+  /*
+    Media query = conditional styles
+    Only applies when screen is 768px wide or smaller
+
+    768px = typical tablet/phone breakpoint
+  */
+
+  .header-title {
+    font-size: 2rem;
+    /* Smaller title on mobile (32px) */
+  }
+}
+
+.header-subtitle {
+  /* The subtitle under the main title */
+
+  font-size: 1.125rem;
+  /* Slightly larger than body text (18px) */
+
+  color: var(--color-text-secondary);
+  /* Gray color - less prominent than title */
+
+  font-weight: 400;
+  /* Normal font weight (not bold) */
+}
+
+/*
+  ==========================================
+  CARD COMPONENT
+  ==========================================
+
+  Cards are containers for related content.
+  They have white background, shadow, and rounded corners.
+*/
+
+.card {
+  /* Reusable card style */
+
+  background-color: var(--color-white);
+  /* White background */
+
+  border-radius: var(--radius-lg);
+  /* Large rounded corners (12px) */
+
+  box-shadow: var(--shadow-md);
+  /*
+    Drop shadow creates depth
+    Makes card appear to "float" above page
+  */
+
+  padding: var(--spacing-md);
+  /* Space inside card (24px all sides) */
+
+  margin-bottom: var(--spacing-lg);
+  /* Space between multiple cards (32px) */
+
+  transition: box-shadow var(--transition-normal);
+  /*
+    Smooth transition when shadow changes
+    Creates nice hover effect
+
+    Syntax: transition: property duration;
+  */
+}
+
+.card:hover {
+  /*
+    Pseudo-class :hover applies when mouse is over element
+    Creates interactive feedback
+  */
+
+  box-shadow: var(--shadow-lg);
+  /*
+    Larger shadow on hover
+    Makes card "lift up" toward user
+  */
+}
+
+.card-title {
+  /* Heading inside cards */
+
+  font-size: 1.5rem;
+  /* 24px */
+
+  font-weight: 600;
+  /* Semi-bold (between normal and bold) */
+
+  color: var(--color-text-primary);
+  /* Dark gray */
+
+  margin-bottom: var(--spacing-sm);
+  /* Space below title (16px) */
+}
+
+/*
+  ==========================================
+  WELCOME MESSAGE
+  ==========================================
+
+  Styles for the welcome message section.
+*/
+
+.welcome-text {
+  font-size: 1.125rem;
+  /* Slightly larger than body text (18px) */
+
+  color: var(--color-text-secondary);
+  /* Medium gray */
+
+  line-height: 1.7;
+  /* Extra space between lines for readability */
+}
+
+/*
+  ==========================================
+  FORM STYLES
+  ==========================================
+
+  Styles for the greeting form and its elements.
+*/
+
+.form {
+  /* Container for form elements */
+
+  display: flex;
+  /*
+    Enables flexbox layout
+    Modern way to arrange elements
+    Better than floats or tables!
+  */
+
+  flex-direction: column;
+  /*
+    Stack children vertically
+
+    Default is row (horizontal)
+    column = vertical stacking
+  */
+
+  gap: var(--spacing-sm);
+  /*
+    Space between flex children (16px)
+
+    gap is cleaner than margins on each child
+    Works with flexbox and grid
+  */
+}
+
+.form-group {
+  /* Container for label + input pair */
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  /* Small gap between label and input (8px) */
+}
+
+.form-label {
+  /* Text label above input */
+
+  font-size: 0.875rem;
+  /* Slightly smaller than body text (14px) */
+
+  font-weight: 500;
+  /* Medium weight (between normal and semi-bold) */
+
+  color: var(--color-text-primary);
+  /* Dark gray */
+}
+
+.form-input {
+  /* Text input field */
+
+  width: 100%;
+  /* Full width of parent container */
+
+  padding: 0.75rem 1rem;
+  /*
+    Padding inside input
+    Syntax: top/bottom left/right
+    12px vertical, 16px horizontal
+  */
+
+  font-size: 1rem;
+  /* Same as body text (16px) */
+
+  border: 2px solid #d1d5db;
+  /*
+    Border around input
+    2px width, solid style, light gray color
+
+    Border syntax: width style color
+  */
+
+  border-radius: var(--radius-md);
+  /* Medium rounded corners (8px) */
+
+  background-color: var(--color-white);
+  /* White background */
+
+  transition: all var(--transition-fast);
+  /*
+    Smooth transition for ALL changing properties
+    Applies to border color, shadow, etc.
+  */
+}
+
+.form-input:focus {
+  /*
+    :focus pseudo-class = when input is clicked/selected
+    Shows user where they're typing
+  */
+
+  outline: none;
+  /*
+    Remove default browser outline (usually blue/black)
+    IMPORTANT: Must provide alternative focus indicator!
+    Never just remove outline without replacement
+  */
+
+  border-color: var(--color-primary);
+  /* Change border to blue when focused */
+
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+  /*
+    Add glowing effect around input
+
+    Shadow syntax: h v blur spread color
+    0 0 0 3px = no offset, no blur, 3px spread
+    rgba = color with transparency (10% opacity)
+
+    Creates a "focus ring" for accessibility
+  */
+}
+
+.form-input::placeholder {
+  /*
+    ::placeholder pseudo-element styles placeholder text
+    The gray text shown when input is empty
+  */
+
+  color: #9ca3af;
+  /* Light gray - subtle and unobtrusive */
+}
+
+/*
+  ==========================================
+  BUTTON STYLES
+  ==========================================
+
+  Styles for the primary action button.
+*/
+
+.btn-primary {
+  /* Main action button style */
+
+  width: 100%;
+  /* Full width of parent */
+
+  padding: 0.875rem 1.5rem;
+  /* Generous padding (14px vertical, 24px horizontal) */
+
+  font-size: 1rem;
+  /* Same as body text (16px) */
+
+  font-weight: 600;
+  /* Semi-bold */
+
+  color: var(--color-white);
+  /* White text */
+
+  background-color: var(--color-primary);
+  /* Blue background */
+
+  border: none;
+  /* Remove default button border */
+
+  border-radius: var(--radius-md);
+  /* Rounded corners (8px) */
+
+  cursor: pointer;
+  /*
+    Shows hand cursor on hover
+    Indicates element is clickable
+  */
+
+  transition: all var(--transition-normal);
+  /* Smooth transitions for hover effects */
+
+  /* Center text inside button */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /*
+    Flexbox centering:
+    align-items: vertical centering
+    justify-content: horizontal centering
+  */
+}
+
+.btn-primary:hover {
+  /* Hover state - when mouse is over button */
+
+  background-color: var(--color-primary-dark);
+  /* Darker blue */
+
+  transform: translateY(-2px);
+  /*
+    Move button up 2px
+    Creates "lift" effect
+
+    transform: translateY(vertical movement)
+    Negative value = move up
+  */
+
+  box-shadow: var(--shadow-md);
+  /* Add shadow to enhance lift effect */
+}
+
+.btn-primary:active {
+  /*
+    :active pseudo-class = when button is being clicked
+    Provides immediate visual feedback
+  */
+
+  transform: translateY(0);
+  /* Return to original position */
+
+  box-shadow: var(--shadow-sm);
+  /* Smaller shadow = pressed down effect */
+}
+
+.btn-primary:disabled {
+  /*
+    :disabled pseudo-class = when button is disabled
+    Used during loading states
+  */
+
+  background-color: #9ca3af;
+  /* Gray background */
+
+  cursor: not-allowed;
+  /* Shows "forbidden" cursor */
+
+  transform: none;
+  /* No hover effects */
+}
+
+/*
+  ==========================================
+  RESPONSE BOXES
+  ==========================================
+
+  Boxes that display success or error messages.
+*/
+
+.response-box {
+  /* Base styles for both success and error boxes */
+
+  margin-top: var(--spacing-md);
+  /* Space above box (24px) */
+
+  padding: var(--spacing-sm);
+  /* Space inside box (16px) */
+
+  border-radius: var(--radius-md);
+  /* Rounded corners (8px) */
+
+  border-left: 4px solid;
+  /*
+    Thick left border for visual emphasis
+    Color set by .success-box or .error-box
+  */
+}
+
+.success-box {
+  /* Green styling for success messages */
+
+  background-color: var(--color-success-light);
+  /* Light green background */
+
+  border-left-color: var(--color-success);
+  /* Dark green left border */
+}
+
+.error-box {
+  /* Red styling for error messages */
+
+  background-color: var(--color-error-light);
+  /* Light red background */
+
+  border-left-color: var(--color-error);
+  /* Dark red left border */
+}
+
+.response-text {
+  /* Text inside response boxes */
+
+  font-weight: 500;
+  /* Medium weight */
+
+  margin: 0;
+  /* Remove default paragraph margin */
+}
+
+.success-box .response-text {
+  /*
+    Descendant selector: .parent .child
+    Space between selectors = "inside"
+
+    Targets .response-text inside .success-box
+  */
+
+  color: #065f46;
+  /* Dark green text */
+}
+
+.error-box .response-text {
+  /* Text inside error boxes */
+
+  color: #991b1b;
+  /* Dark red text */
+}
+
+/*
+  ==========================================
+  UTILITY CLASSES
+  ==========================================
+
+  Small, reusable helper classes.
+*/
+
+.hidden {
+  /* Completely hides element */
+
+  display: none !important;
+  /*
+    display: none removes element from layout
+    Other elements act like it doesn't exist
+
+    !important overrides all other display values
+    Use sparingly - only for utilities like this
+  */
+}
+
+.fade-in {
+  /* Animation class - added with JavaScript */
+
+  animation: fadeIn var(--transition-slow);
+  /*
+    Applies fadeIn animation
+    Duration from custom property (300ms)
+  */
+}
+
+@keyframes fadeIn {
+  /*
+    @keyframes defines animation sequence
+    Animation name: fadeIn
+  */
+
+  from {
+    /* Starting state */
+    opacity: 0;
+    /* Fully transparent (invisible) */
+  }
+
+  to {
+    /* Ending state */
+    opacity: 1;
+    /* Fully visible */
+  }
+
+  /*
+    Browser animates from opacity 0 to 1
+    Creates smooth fade-in effect
+  */
+}
+
+/*
+  ==========================================
+  FOOTER
+  ==========================================
+
+  Bottom section of the page.
+*/
+
+.footer {
+  text-align: center;
+  /* Center text horizontally */
+
+  padding: var(--spacing-lg) 0;
+  /*
+    Vertical padding only (32px top/bottom)
+    0 = no left/right padding
+  */
+
+  margin-top: var(--spacing-xl);
+  /* Large space above footer (48px) */
+}
+
+.footer-text {
+  color: var(--color-text-secondary);
+  /* Medium gray text */
+
+  font-size: 0.875rem;
+  /* Slightly smaller than body text (14px) */
+}
+
+/*
+  ==========================================
+  RESPONSIVE DESIGN - TABLETS
+  ==========================================
+
+  Adjustments for tablet-sized screens.
+*/
+
+@media (max-width: 768px) {
+  /*
+    768px and below = tablets in portrait, phones
+    Common breakpoint for responsive design
+  */
+
+  .main-container {
+    padding: var(--spacing-sm);
+    /* Less padding on smaller screens */
+  }
+
+  .card {
+    padding: var(--spacing-sm);
+    /* Smaller card padding */
+  }
+}
+
+/*
+  ==========================================
+  RESPONSIVE DESIGN - MOBILE PHONES
+  ==========================================
+
+  Adjustments for small phone screens.
+*/
+
+@media (max-width: 480px) {
+  /*
+    480px and below = small phones
+    Further reduce sizes for tiny screens
+  */
+
+  .header-title {
+    font-size: 1.75rem;
+    /* Smaller title (28px) */
+  }
+
+  .form-input,
+  .btn-primary {
+    font-size: 0.9375rem;
+    /* Slightly smaller text (15px) */
+  }
+}
+
+/*
+  ==========================================
+  CSS CONCEPTS SUMMARY FOR BEGINNERS
+  ==========================================
+
+  SELECTORS:
+  - element: body { } - all <body> elements
+  - .class: .card { } - elements with class="card"
+  - #id: #main { } - element with id="main"
+  - .parent .child: .card .text { } - .text inside .card
+  - :hover: a:hover { } - element when mouse is over it
+  - ::placeholder: input::placeholder { } - placeholder text
+
+  BOX MODEL:
+  Every element is a rectangular box with:
+  - Content (text, images)
+  - Padding (space inside border)
+  - Border (edge of element)
+  - Margin (space outside border)
+
+  UNITS:
+  - px: Pixels (fixed size)
+  - rem: Relative to root font (scalable, accessible)
+  - %: Percentage of parent
+  - vh/vw: Viewport height/width (1vh = 1% of screen)
+
+  COLORS:
+  - Named: red, blue, white
+  - Hex: #FF0000 (red), #2563eb (blue)
+  - RGB: rgb(255, 0, 0)
+  - RGBA: rgba(255, 0, 0, 0.5) - with transparency
+
+  LAYOUT:
+  - Flexbox: Modern 1D layout (row or column)
+  - display: flex; enables flexbox
+  - flex-direction: row | column
+  - gap: space between items
+
+  RESPONSIVE DESIGN:
+  - Media queries apply styles conditionally
+  - @media (max-width: 768px) { } = tablets/phones
+  - Mobile-first: Start with mobile, add desktop styles
+
+  CUSTOM PROPERTIES:
+  - Define: --color-primary: #2563eb;
+  - Use: color: var(--color-primary);
+  - Benefits: Consistency, easy to change
+
+  BEST PRACTICES:
+  1. Use semantic class names (.card, not .box1)
+  2. Keep specificity low (avoid !important)
+  3. Group related styles together
+  4. Comment complex code
+  5. Use consistent spacing and naming
+  6. Test on different screen sizes
+  7. Ensure good color contrast
+*/
