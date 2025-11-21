@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Parish Management System  Imyirondoro</title>
+    <link rel="stylesheet" href="/styles.css">
+    <script type="module" src="/app.js" defer></script>
+</head>
+
+<body>
+<div class="main-container">
+
+    <!-- HEADER WITH BACK BUTTON -->
+    <header class="header flex justify-between items-center">
+        <div>
+            <h1 class="header-title">IMYIRONDORO</h1>
+            <p class="header-subtitle">Andika, uhindure, wongere unarebe imyirondoro y'abakristu hamwe n'amaskramentu bahawe</p>
+        </div>
+        <button onclick="navigateToHome()" class="btn btn-outline">
+            ← Subira ahabanza
+        </button>
+    </header>
+
+    <!-- ADD NEW FAITHFUL SECTION -->
+    <section class="card">
+        <h2 class="card-title">Andika umukristu mushya</h2>
+
+        <form id="faithful-form" class="form">
+            <div class="form-grid">
+                <!-- PERSONAL INFORMATION -->
+                <div class="form-section">
+                    <h3 class="section-title">Amakuru y'umuntu</h3>
+                    <div class="form-group">
+                        <label for="firstname" class="form-label">
+                            Izina rya batisimu/Praenomen: <span class="required-indicator">*</span>
+                        </label>
+                        <input type="text" id="firstname" name="firstname" class="form-input" placeholder="Syiramo izina rya batisimu" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="form-label">
+                            Izina ry'umuryango/Nomen: <span class="required-indicator">*</span>
+                        </label>
+                        <input type="text" id="name" name="name" class="form-input" placeholder="Syiramo amazina" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="fatherName" class="form-label">
+                            Izina rya se/Nomen patris: <span class="required-indicator">*</span>
+                        </label>
+                        <input type="text" id="fatherName" name="fatherName" class="form-input" placeholder="Shyiramo amazina ya se" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="motherName" class="form-label">
+                            Izina rya nyina/ Nomen matris: <span class="required-indicator">*</span>
+                        </label>
+                        <input type="text" id="motherName" name="motherName" class="form-input" placeholder="Shyiramo amazina ya nyina" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="godparentName" class="form-label"> Umubyeyi wa batisimu/ Patrin vel matrin.:</label>
+                        <input type="text" id="godparentName" name="godparentName" class="form-input" placeholder="Shyiramo amazina y'umubyeyi wa batisimu">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dateOfBirth" class="form-label">Itariki y'amavuko/Nat.die:</label>
+                        <input type="date" id="dateOfBirth" name="dateOfBirth" class="form-input">
+                    </div>
+                </div>
+
+                <!-- BAPTISM INFORMATION -->
+                <div class="form-section">
+                    <h3 class="section-title">Amakuru ya Batisimu</h3>
+                    <div class="form-group">
+                        <label for="dateOfBaptism" class="form-label">Itariki yabatirijweho/Bapt.die:</label>
+                        <input type="date" id="dateOfBaptism" name="dateOfBaptism" class="form-input">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="baptismId" class="form-label">Nimero ya batisimu:</label>
+                        <input type="text" id="baptismId" name="baptismId" class="form-input" placeholder="Shyiramo nimero ya batisimu">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="baptismMinister" class="form-label">Uwamubatije/Minister:</label>
+                        <input type="text" id="baptismMinister" name="baptismMinister" class="form-input" placeholder="Shyiramo amazina y'uwamubatije">
+                    </div>
+                </div>
+
+                <!-- ADDITIONAL SACRAMENTS -->
+                <div class="form-section">
+                    <h3 class="section-title">Andi Masakramentu</h3>
+                    <div class="form-group">
+                        <label for="dateOfFirstCommunion" class="form-label">Itariki yahereweho ukaristiya ya 1/Eucharist.recep:</label>
+                        <input type="date" id="dateOfFirstCommunion" name="dateOfFirstCommunion" class="form-input">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dateOfConfirmation" class="form-label">Itariki yakomerejweho/Confir.die:</label>
+                        <input type="date" id="dateOfConfirmation" name="dateOfConfirmation" class="form-input">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="confirmationId" class="form-label">Nimero yo gukomezwa:</label>
+                        <input type="text" id="confirmationId" name="confirmationId" class="form-input" placeholder="Shyiramo numero yo gukomezwa">
+                    </div>
+                </div>
+
+                <!-- MATRIMONY INFORMATION -->
+                <div class="form-section">
+                    <h3 class="section-title">Amakuru y'Ubushyingirwe</h3>
+                    <div class="form-group">
+                        <label for="dateOfMatrimony" class="form-label">Itariki yo gushyingirwa:</label>
+                        <input type="date" id="dateOfMatrimony" name="dateOfMatrimony" class="form-input">
+                    </div>
+                    <div class="form-group">
+                        <label for="matrimonyId" class="form-label">Nimero yo gushyingirwa:</label>
+                        <input type="text" id="matrimonyId" name="matrimonyId" class="form-input" placeholder="Shyiramo numero yo gushyingirwa">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="spouseName" class="form-label">Uwo bashyingiranwe:</label>
+                        <input type="text" id="spouseName" name="spouseName" class="form-input" placeholder="Shyiramo amazina y'uwo bashyingiranwe">
+                    </div>
+                    <div class="form-group">
+                        <label for="spouseBaptismId" class="form-label">Nimero ya batisimu y'uwo bashyingiwe:</label>
+                        <input type="text" id="spouseBaptismId" name="spouseBaptismId" class="form-input" placeholder="Shyiramo nimero ya batisimu y'uwo bashyingiwe">
+                    </div>
+                </div>
+
+                <!-- HOLY ORDERS -->
+                <div class="form-section">
+                    <h3 class="section-title">Ubusaaseridoti</h3>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="diaconate" name="level_diaconate" value="true">
+                            <label for="diaconate" class="checkbox-label">Ubudiyakoni</label>
+                        </div>
+                        <div id="date_diaconate_group" class="date-group">
+                            <label for="date_diaconate">Itariki y'ubudiyakoni:</label>
+                            <input type="date" id="date_diaconate" name="date_diaconate" class="form-input">
+                        </div>
+
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="priesthood" name="level_priesthood" value="true">
+                            <label for="priesthood" class="checkbox-label">Ubupadiri</label>
+                        </div>
+                        <div id="date_priesthood_group" class="date-group">
+                            <label for="date_priesthood">Itariki y'ubupadiri:</label>
+                            <input type="date" id="date_priesthood" name="date_priesthood" class="form-input">
+                        </div>
+
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="episcopate" name="level_episcopate" value="true">
+                            <label for="episcopate" class="checkbox-label">Ubwepiskopi</label>
+                        </div>
+                        <div id="date_episcopate_group" class="date-group">
+                            <label for="date_episcopate">Itariki y'ubwepiskopi:</label>
+                            <input type="date" id="date_episcopate" name="date_episcopate" class="form-input">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RELIGIOUS PROFESSION -->
+                <div class="form-section">
+                    <h3 class="section-title">Amasezerano yo kwiha Imana</h3>
+                    <div class="form-group">
+                        <label for="congregation_name">Izina ry'umuryango yasezeraniyemo:</label>
+                        <input type="text" id="congregation_name" name="congregationName" class="form-input" placeholder="Shyiramo izina ry'umuryango yasezeraniyemo">
+                    </div>
+
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="temporal_prof" name="hasTemporalProfession" value="true">
+                            <label for="temporal_prof" class="checkbox-label">Amasezerano ya mbere</label>
+                        </div>
+                        <div id="date_temporal_prof_group" class="date-group">
+                            <label for="date_temporal_prof">Itariki y'amasezerano ya mbere:</label>
+                            <input type="date" id="date_temporal_prof" name="dateTemporalProfession" class="form-input">
+                        </div>
+
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="permanent_prof" name="hasPermanentProfession" value="true">
+                            <label for="permanent_prof" class="checkbox-label">Amasezerano ya burundu</label>
+                        </div>
+                        <div id="date_permanent_prof_group" class="date-group">
+                            <label for="date_permanent_prof">Itariki y'Amasezerano ya burundu:</label>
+                            <input type="date" id="date_permanent_prof" name="datePermanentProfession" class="form-input">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MINISTRY -->
+                <div class="form-section">
+                    <h3 class="section-title">Ubutumwa muri Kiliziya</h3>
+                    <p class="section-subtitle">Hitamo ubutumwa akora muri Kiliziya:</p>
+
+                    <div class="ministry-grid">
+                        <div class="ministry-item">
+                            <input type="checkbox" id="lector" name="ministry" value="Umugabuzi w'ingoboka">
+                            <label for="lector" class="checkbox-label">Umugabuzi w'ingoboka</label>
+                        </div>
+
+                        <div class="ministry-item">
+                            <input type="checkbox" id="eucharist_minister" name="ministry" value="Umusomyi">
+                            <label for="eucharist_minister" class="checkbox-label">Umusomyi</label>
+                        </div>
+
+                        <div class="ministry-item">
+                            <input type="checkbox" id="altar_server" name="ministry" value="Umuhereza">
+                            <label for="altar_server" class="checkbox-label">Umuhereza</label>
+                        </div>
+
+                        <div class="ministry-item">
+                            <input type="checkbox" id="catechist" name="ministry" value="Umukateshiste">
+                            <label for="catechist" class="checkbox-label">Umukateshiste</label>
+                        </div>
+
+                        <div class="ministry-item">
+                            <input type="checkbox" id="choir_member" name="ministry" value="Umuririmbyi">
+                            <label for="choir_member" class="checkbox-label">Umuririmbyi</label>
+                        </div>
+
+                        <div class="ministry-item">
+                            <input type="checkbox" id="other_ministry" name="ministry" value="ubundi butumwa">
+                            <label for="other_ministry" class="checkbox-label">Ubundi butumwa</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="other_ministry_details">Sobanura ubwo butumwa bundi:</label>
+                        <input type="text" id="other_ministry_details" name="otherMinistryDetails" class="form-input" placeholder="Nyuguti: Sacristan, Parish Council Member">
+                    </div>
+                </div>
+
+                <!-- LAPSE HISTORY -->
+                <div class="form-section">
+                    <h3 class="section-title">Gufungirwa amaskramentu no kugarukira Imana</h3>
+
+                    <div class="lapse-controls">
+                        <button type="button" id="add_lapse_button" class="btn btn-secondary">
+                            ➕ Kanda hano niba yarafungiwe/yarifungiye amaskramentu
+                        </button>
+                    </div>
+
+                    <div id="lapses_container" class="lapses-container">
+                        <!-- Dynamic lapse entries will be added here -->
+                    </div>
+
+                    <!-- Lapse Template (Hidden) -->
+                    <div id="lapse_template" class="hidden">
+                        <div class="lapse-entry">
+                            <div class="lapse-header">
+                                <h4>Icyatumye afungirwa amaskramentu</h4>
+                                <button type="button" onclick="removeLapseEntry(this)" class="btn btn-danger btn-sm">
+                                    🗑️ Siba gufungirwa
+                                </button>
+                            </div>
+
+                            <div class="lapse-fields">
+                                <div class="form-group">
+                                    <label for="lapse_type_TEMPLATE">Icyatumye afungirwa:</label>
+                                    <select name="lapseType[]" id="lapse_type_TEMPLATE" class="form-input">
+                                        <option value="">-- Hitamo impamvu yafungiwe --</option>
+                                        <option value="irregular_union">Kwishyingira</option>
+                                        <option value="divorced_remarried">Gutandukana n'uwo bashyingiwe byemewe agashaka undi</option>
+                                        <option value="schism">Kujya mu yandi madini</option>
+                                        <option value="forbidden_group">Gusengera mu matisnda yaciwe</option>
+                                        <option value="public_immorality">Ubusambanyi (Guca inyuma, kubyarira mu rugo,...)</option>
+                                        <option value="other_lapsed">Izindi mpamvu</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="lapse_date_TEMPLATE">Itariki yafungiweho:</label>
+                                    <input type="date" name="lapseDate[]" id="lapse_date_TEMPLATE" class="form-input">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="return_date_TEMPLATE">Itariki yo kugarukira Imana:</label>
+                                    <input type="date" name="returnDate[]" id="return_date_TEMPLATE" class="form-input">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="reason_text_TEMPLATE">Impamvu zihariye zatumye afungirwa amaskramentu:</label>
+                                    <textarea name="lapseReason[]" id="reason_text_TEMPLATE" class="form-input" placeholder="Sobanura neza impamvu..."></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CHURCH TERRITORY -->
+                <div class="form-section">
+                    <h3 class="section-title">Amaderesi ya Kiliziya</h3>
+                    <div class="form-group">
+                        <label for="diocese" class="form-label">Diyosezi: <span class="required-indicator">*</span></label>
+                        <input type="text" id="diocese" name="diocese" class="form-input" placeholder="Shyiramo izina rya Diyosezi" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="parish" class="form-label">Paruwase: <span class="required-indicator">*</span></label>
+                        <input type="text" id="parish" name="parish" class="form-input" placeholder="Shyiramo izina paruwase" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subparish" class="form-label">Santarali:</label>
+                        <input type="text" id="subparish" name="subparish" class="form-input" placeholder="Shyiramo santarali">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="basicEcclesialCommunity" class="form-label">Umuryangoremezo/Vicus:</label>
+                        <input type="text" id="basicEcclesialCommunity" name="basicEcclesialCommunity" class="form-input" placeholder="Shyiramo umuryangoremezo">
+                    </div>
+                </div>
+
+                <!-- CURRENT STATUS -->
+                <div class="form-section">
+                    <h3 class="section-title">Imimerere y'ubu</h3>
+
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="relocated_status" name="hasRelocated" value="true">
+                            <label for="relocated_status" class="checkbox-label">Ese yimukiye mu yindi paruwase?</label>
+                        </div>
+                        <div id="new_parish_group" class="conditional-group">
+                            <label for="new_parish_name">Paruwase Yimukiyemo:</label>
+                            <input type="text" id="new_parish_name" name="newParishName" class="form-input" placeholder="Shyiramo izina rya paruwase yimukiyemo">
+                        </div>
+
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="faithful_deceased" name="isDeceased" value="true">
+                            <label for="faithful_deceased" class="checkbox-label">Yitabye Imana</label>
+                        </div>
+                        <div id="death_date_group" class="conditional-group">
+                            <label for="date_of_death">Itariki yapfiriyeho:</label>
+                            <input type="date" id="date_of_death" name="dateOfDeath" class="form-input">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary btn-large">💾 Bika Umukristu</button>
+            </div>
+        </form>
+
+        <!-- RESPONSE MESSAGES -->
+        <div id="form-success" class="response-box success-box hidden">
+            <p id="form-success-text" class="response-text"></p>
+        </div>
+
+        <div id="form-error" class="response-box error-box hidden">
+            <p id="form-error-text" class="response-text"></p>
+        </div>
+    </section>
+
+</div>
+
+<footer class="footer">
+    <p>&copy; 2025 Parish Management System</p>
+</footer>
+
+<script>
+    function navigateToHome() {
+        window.location.href = '/';
+    }
+</script>
+
+</body>
+</html>

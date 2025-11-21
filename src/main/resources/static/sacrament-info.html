@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sacrament Information - Parish Management System</title>
+    <link rel="stylesheet" href="/styles.css">
+    <script type="module" src="/sacrament-info.js" defer></script>
+</head>
+
+<body>
+<div class="main-container">
+
+    <!-- HEADER SECTION -->
+    <header class="header">
+        <h1 class="header-title">Ifishi y'umukristu</h1>
+        <p class="header-subtitle">Shakisha ifishi y'umukristu</p>
+        <button onclick="navigateToHome()" class="btn btn-outline mt-4">
+            ← Subira Ahabanza
+        </button>
+    </header>
+
+    <!-- SEARCH SECTION -->
+    <section class="card">
+        <h2 class="card-title">Shakisha Umukristu</h2>
+        <form id="search-form" class="form">
+            <div class="form-group">
+                <label for="search-input" class="form-label">Andika izina ry'umukristu:</label>
+                <input
+                        type="text"
+                        id="search-input"
+                        class="form-input"
+                        placeholder="Shyiramo izina..."
+                        required
+                        minlength="2">
+            </div>
+            <button type="submit" class="btn btn-primary">Shakisha</button>
+        </form>
+
+        <!-- LOADING INDICATOR -->
+        <div id="loading" class="response-box hidden">
+            <p class="response-text">Tegereza ibyo wasabye...</p>
+        </div>
+
+        <!-- ERROR MESSAGE -->
+        <div id="error-message" class="response-box error-box hidden">
+            <p id="error-text" class="response-text"></p>
+        </div>
+    </section>
+
+    <!-- SEARCH RESULTS SECTION -->
+    <section id="search-results-section" class="card hidden">
+        <h2 class="card-title">urutonde rw'abo washatse</h2>
+        <p class="section-subtitle">Hitamo umukristu ku rutonde:</p>
+        <div id="search-results" class="faithful-list">
+            <!-- Search results will be populated here -->
+        </div>
+    </section>
+
+    <!-- SACRAMENT INFORMATION DISPLAY SECTION -->
+    <section id="sacrament-info-section" class="card hidden">
+        <h2 class="card-title">Ifishi y'umukristu</h2>
+
+        <!-- PERSONAL INFORMATION -->
+        <div class="form-section">
+            <h3 class="section-title">Umwirondoro</h3>
+            <div class="faithful-details">
+                <div class="faithful-detail">
+                    <span class="detail-label">Izina rya batisimu/Preanomen</span>
+                    <span id="firstname" class="detail-value">--</span>
+                </div>
+                <div class="faithful-detail">
+                    <span class="detail-label">Izina/Nomen</span>
+                    <span id="name" class="detail-value">--</span>
+                </div>
+                <div class="faithful-detail">
+                    <span class="detail-label">Izina rya Se/Nomen Patris</span>
+                    <span id="father-name" class="detail-value">--</span>
+                </div>
+                <div class="faithful-detail">
+                    <span class="detail-label">Izina rya Nyina/Nomen Matris</span>
+                    <span id="mother-name" class="detail-value">--</span>
+                </div>
+                <div class="faithful-detail">
+                    <span class="detail-label">Umubyeyi wa Batisimu/Patrin vel matrin</span>
+                    <span id="godparent-name" class="detail-value">--</span>
+                </div>
+                <div class="faithful-detail">
+                    <span class="detail-label">Itariki y'amavuko/Nat.die</span>
+                    <span id="date-of-birth" class="detail-value">--</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ADDRESS INFORMATION -->
+        <div class="form-section">
+            <h3 class="section-title">Aho abarizwa</h3>
+            <div class="faithful-details">
+                <div class="faithful-detail">
+                    <span class="detail-label">Diyoseze/Diocesis</span>
+                    <span id="diocese" class="detail-value">--</span>
+                </div>
+                <div class="faithful-detail">
+                    <span class="detail-label">Paruwasi/Paroecia</span>
+                    <span id="parish" class="detail-value">--</span>
+                </div>
+                <div class="faithful-detail">
+                    <span class="detail-label">santarali</span>
+                    <span id="subparish" class="detail-value">--</span>
+                </div>
+                <div class="faithful-detail">
+                    <span class="detail-label">Umuryangoremezo</span>
+                    <span id="bec" class="detail-value">--</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- BAPTISM -->
+        <div class="form-section">
+            <h3 class="section-title">Batisimu</h3>
+            <div class="faithful-details">
+                <div class="faithful-detail">
+                    <span class="detail-label">Itariki ya batisimu/bapt.die</span>
+                    <span id="date-baptism" class="detail-value">--</span>
+                </div>
+                <div class="faithful-detail">
+                    <span class="detail-label">Nomero ya batisimu</span>
+                    <span id="baptism-id" class="detail-value">--</span>
+                </div>
+                <div class="faithful-detail">
+                    <span class="detail-label">Uwamubatije/Minister</span>
+                    <span id="baptism-minister" class="detail-value">--</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- FIRST COMMUNION -->
+        <div class="form-section">
+            <h3 class="section-title">Ukaristiya ya mbere/First Communion</h3>
+            <div class="faithful-details">
+                <div class="faithful-detail">
+                    <span class="detail-label">Itariki</span>
+                    <span id="date-first-communion" class="detail-value">--</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- CONFIRMATION -->
+        <div class="form-section">
+            <h3 class="section-title">Ugukomezwa/Confirmation</h3>
+            <div class="faithful-details">
+                <div class="faithful-detail">
+                    <span class="detail-label">Itariki y'ugukomezwa/confirmation.die</span>
+                    <span id="date-confirmation" class="detail-value">--</span>
+                </div>
+                <div class="faithful-detail">
+                    <span class="detail-label">Nomero y'ugukomezwa</span>
+                    <span id="confirmation-id" class="detail-value">--</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- MATRIMONY -->
+        <div class="form-section">
+            <h3 class="section-title">Ugushyingirwa</h3>
+            <div class="faithful-details">
+                <div class="faithful-detail">
+                    <span class="detail-label">Itariki y'ugushyingirwa/matrim.die</span>
+                    <span id="date-matrimony" class="detail-value">--</span>
+                </div>
+                <div class="faithful-detail">
+                    <span class="detail-label">Nomero y'ugushyingirwa</span>
+                    <span id="matrimony-id" class="detail-value">--</span>
+                </div>
+                <div class="faithful-detail">
+                    <span class="detail-label">Izina ry'uwo bashakanye/coniugum</span>
+                    <span id="spouse-name" class="detail-value">--</span>
+                </div>
+                <div class="faithful-detail">
+                    <span class="detail-label">Nomero ya batisimu y'uwo bashakanye</span>
+                    <span id="spouse-baptism-id" class="detail-value">--</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ACTION BUTTONS -->
+        <div class="form-actions">
+            <button onclick="printSacramentInfo()" class="btn btn-primary btn-large">
+                Icapisha
+            </button>
+            <button onclick="newSearch()" class="btn btn-secondary btn-large">
+                Shakisha undi
+            </button>
+        </div>
+    </section>
+
+</div>
+
+<footer class="footer">
+    <p>&copy; 2025 Parish Management System.</p>
+</footer>
+
+<script>
+    function navigateToHome() {
+        window.location.href = '/';
+    }
+
+    function printSacramentInfo() {
+        window.print();
+    }
+
+    function newSearch() {
+        document.getElementById('sacrament-info-section').classList.add('hidden');
+        document.getElementById('search-results-section').classList.add('hidden');
+        document.getElementById('search-input').value = '';
+        document.getElementById('search-input').focus();
+    }
+</script>
+
+</body>
+</html>

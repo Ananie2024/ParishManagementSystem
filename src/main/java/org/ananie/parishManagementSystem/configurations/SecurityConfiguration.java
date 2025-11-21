@@ -18,6 +18,7 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(authorize -> authorize
                         // 1. Allow public access to all /hello paths
                         .requestMatchers( "/hello/**").permitAll()
+                        .requestMatchers("/api/**").permitAll()
 
                         // 2. Allow access to the default Spring Security login page
                         .requestMatchers("/login").permitAll()
