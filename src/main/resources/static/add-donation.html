@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="rw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tanga Ituro - Parish Management</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 flex items-center justify-center min-h-screen p-4">
+<!-- Main Container -->
+<div class="bg-white rounded-lg shadow-lg w-full max-w-2xl p-8">
+    <!-- Form Title -->
+    <h1 id="formTitleLabel" class="text-2xl font-bold text-center mb-6 text-blue-600">
+        TANGA ITURO RYAWE
+    </h1>
+
+    <!-- Form -->
+    <form id="donationForm">
+        <div class="space-y-4">
+            <!-- Faithful Name (Read-only) -->
+            <div class="grid grid-cols-[150px_1fr] gap-4 items-center">
+                <label class="text-sm font-medium text-gray-700">Umukristu:</label>
+                <p id="faithfulNameLabel" class="font-bold text-gray-900">[]</p>
+            </div>
+
+            <!-- Amount -->
+            <div class="grid grid-cols-[150px_1fr] gap-4 items-center">
+                <label for="amountTextField" class="text-sm font-medium text-gray-700">
+                    Amafaranga: <span class="text-red-500">*</span>
+                </label>
+                <input
+                        type="number"
+                        id="amountTextField"
+                        class="px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 w-full"
+                        placeholder="Shyiramo amafaranga"
+                        min="100"
+                        step="100"
+                        required
+                >
+            </div>
+
+            <!-- Year -->
+            <div class="grid grid-cols-[150px_1fr] gap-4 items-center">
+                <label for="yearTextField" class="text-sm font-medium text-gray-700">
+                    Umwaka: <span class="text-red-500">*</span>
+                </label>
+                <input
+                        type="number"
+                        id="yearTextField"
+                        class="px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 w-full"
+                        placeholder="Shyiramo umwaka (urugero: 2024)"
+                        min="1900"
+                        max="2100"
+                        required
+                >
+            </div>
+
+            <!-- Date -->
+            <div class="grid grid-cols-[150px_1fr] gap-4 items-center">
+                <label for="datePicker" class="text-sm font-medium text-gray-700">
+                    Itariki yo gutanga: <span class="text-red-500">*</span>
+                </label>
+                <input
+                        type="date"
+                        id="datePicker"
+                        class="px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 w-full"
+                        required
+                >
+            </div>
+
+            <!-- Contribution Type (Optional) -->
+            <div class="grid grid-cols-[150px_1fr] gap-4 items-center">
+                <label for="contributionType" class="text-sm font-medium text-gray-700">
+                    Ubwoko bw'ituro:
+                </label>
+                <select
+                        id="contributionType"
+                        class="px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 w-full"
+                >
+                    <option value="TITHE">Icumi</option>
+                    <option value="OFFERING">Ituro risanzwe</option>
+                    <option value="SPECIAL_COLLECTION">Ituro ridasanzwe</option>
+                    <option value="BUILDING_FUND">Ituro ryo kubaka</option>
+                </select>
+            </div>
+
+            <!-- Payment Method (Optional) -->
+            <div class="grid grid-cols-[150px_1fr] gap-4 items-center">
+                <label for="paymentMethod" class="text-sm font-medium text-gray-700">
+                    Uburyo bwo kwishyura:
+                </label>
+                <select
+                        id="paymentMethod"
+                        class="px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 w-full"
+                >
+                    <option value="CASH">Amafaranga y'agaciro</option>
+                    <option value="MOBILE_MONEY">Mobile Money</option>
+                    <option value="BANK_TRANSFER">Banki</option>
+                    <option value="CHECK">Cheque</option>
+                </select>
+            </div>
+
+            <!-- Notes -->
+            <div class="grid grid-cols-[150px_1fr] gap-4 items-start">
+                <label for="notesTextArea" class="text-sm font-medium text-gray-700 pt-2">
+                    Inyandiko:
+                </label>
+                <textarea
+                        id="notesTextArea"
+                        rows="3"
+                        class="px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 w-full resize-y"
+                        placeholder="Andi makuru (ntago ari ngombwa)"
+                ></textarea>
+            </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="flex justify-center gap-4 mt-6">
+            <button
+                    type="submit"
+                    id="saveContributionButton"
+                    class="px-6 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition font-medium"
+            >
+                Bika
+            </button>
+            <button
+                    type="button"
+                    id="cancelButton"
+                    class="px-6 py-2 bg-gray-300 text-gray-700 rounded hover:bg-gray-400 transition font-medium"
+            >
+                Bireke
+            </button>
+        </div>
+
+        <!-- Status Label -->
+        <div id="statusLabel" class="text-center mt-4 font-bold p-2 rounded hidden"></div>
+    </form>
+</div>
+
+<script type="module" src="add-donation.js"></script>
+</body>
+</html>

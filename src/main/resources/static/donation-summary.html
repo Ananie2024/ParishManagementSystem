@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="rw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amaturo Yose - Parish Management</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 flex items-center justify-center min-h-screen p-4">
+<!-- Main Container -->
+<div class="bg-white rounded-lg shadow-lg w-full max-w-3xl p-6">
+    <!-- Title -->
+    <h1 class="text-2xl font-bold text-center text-blue-600 mb-6">AMATURO YOSE</h1>
+
+    <!-- Year Filter Section -->
+    <div class="flex items-center justify-center gap-3 mb-4 flex-wrap">
+        <label class="text-sm font-bold text-gray-700">Umwaka:</label>
+        <select id="yearFilterComboBox" class="px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <option value="">Hitamo umwaka...</option>
+        </select>
+        <button id="refreshSummaryButton" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition">
+            Refresh
+        </button>
+        <button id="showAllYearsButton" class="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 transition">
+            Imyaka yose
+        </button>
+    </div>
+
+    <!-- SubParish Filter Section -->
+    <div class="flex items-center justify-center gap-3 mb-4 flex-wrap">
+        <label class="text-sm font-bold text-gray-700">Santarali:</label>
+        <select id="subParishFilterComboBox" class="px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <option value="">Hitamo santarali...</option>
+        </select>
+        <button id="clearSubParishFilterButton" class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition">
+            Siba
+        </button>
+    </div>
+
+    <!-- Separator -->
+    <hr class="my-4 border-gray-300">
+
+    <!-- Summary Content - Scrollable -->
+    <div class="overflow-y-auto" style="max-height: 450px;">
+        <div id="summaryContentVBox" class="space-y-6 px-2">
+            <!-- Overall Total Section -->
+            <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                <h2 id="overallTotalTitleLabel" class="text-lg font-bold text-gray-700 mb-2">
+                    IGITERANYO RUSANGE
+                </h2>
+                <p id="overallTotalAmountLabel" class="text-2xl font-bold text-green-600">
+                    0 RWF
+                </p>
+            </div>
+
+            <!-- Separator -->
+            <hr class="border-gray-300">
+
+            <!-- Dynamic Summary Section -->
+            <div id="dynamicSummaryVBox" class="space-y-3">
+                <h3 id="summaryTitleLabel" class="text-base font-bold text-gray-700 mb-3">
+                    IGITERANYO CY'ITURO RYA SANTARALI:
+                </h3>
+                <!-- Sub-parish or BEC summaries will be added here dynamically -->
+                <div id="summaryItemsContainer" class="space-y-2">
+                    <!-- Items populated by TypeScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Close Button -->
+    <div class="flex justify-center mt-6">
+        <button id="closeButton" class="px-8 py-3 bg-gray-500 text-white rounded hover:bg-gray-600 transition text-base font-medium">
+            Funga
+        </button>
+    </div>
+
+    <!-- Loading Indicator -->
+    <div id="loadingIndicator" class="hidden fixed inset-0 bg-black bg-opacity-30 flex items-center justify-center z-50">
+        <div class="bg-white p-6 rounded-lg shadow-xl">
+            <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
+            <p class="mt-4 text-gray-700 font-medium">Gutegura...</p>
+        </div>
+    </div>
+</div>
+
+<script type="module" src="donation-summary.js"></script>
+</body>
+</html>

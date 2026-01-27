@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parish Management System - Home</title>
+    <link rel="stylesheet" href="/styles.css">
+    <script type="module" src="/app.js" defer></script>
+</head>
+
+<body>
+<div class="main-container">
+
+    <!-- HEADER SECTION -->
+    <header class="header">
+        <h1 class="header-title">Parish Management System</h1>
+        <p class="header-subtitle">Digital Services for Catholic Parishes</p>
+    </header>
+
+    <!-- WELCOME MESSAGE SECTION -->
+    <section class="card">
+        <h2 class="card-title">Ikaze kuri paruwase yacu, Yezu akuzwe iteka ryose!</h2>
+        <div id="welcome-message" class="welcome-text">
+            Loading welcome message...
+        </div>
+    </section>
+
+    <!-- QUICK ACTIONS SECTION -->
+    <section class="card">
+        <h2 class="card-title">Shaka amakuru ukeneye muri paruwase</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- MANAGE FAITHFUL CARD -->
+            <div class="faithful-card text-center">
+                <h3 class="faithful-name mb-4"> Imyirondoro y'abakristu</h3>
+                <p class="detail-value mb-6">Andika, uhindure, wongere unarebe imyirondoro y'abakristu bacu</p>
+                <button onclick="navigateToFaithful()" class="btn btn-primary w-full">
+                    Reba imyirondoro
+                </button>
+            </div>
+
+            <!-- SACRAMENT INFO CARD -->
+            <div class="faithful-card text-center">
+                <h3 class="faithful-name mb-4">Amafishi ya batisimu</h3>
+                <p class="detail-value mb-6">Shakisha Amafishi ya batisimu y'abakristu</p>
+                <button onclick="navigateToSacramentInfo()" class="btn btn-secondary w-full">
+                    shaka ifishi
+                </button>
+            </div>
+
+            <!-- PARISH INFO CARD -->
+            <div class="faithful-card text-center">
+                <h3 class="faithful-name mb-4">Ibikorwa by'iyogezabutumwa n'ikenurabushyo</h3>
+                <p class="detail-value mb-6">Menya ibikorerwa muri paruwasi yacu </p>
+                <button class="btn btn-outline w-full" disabled>
+                    Coming Soon
+                </button>
+            </div>
+            <!-- DONATIONS CARD -->
+            <div class="faithful-card text-center">
+                <h3 class="faithful-name mb-4">Amaturo</h3>
+                <p class="detail-value mb-6">Ibijyanye n'amaturo, kwandika ituro rishya,
+                    kureba ibipande n'ibarurishamibare ry'amaturo</p>
+                <button onclick="navigateToDonations()" class="btn btn-secondary w-full">
+                    reba ibijyanye n'amaturo
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- PARISH STATISTICS SECTION -->
+    <section class="card">
+        <h2 class="card-title">Imibare</h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+            <div class="faithful-card">
+                <div class="detail-label">abakristu bose</div>
+                <div id="total-faithful" class="detail-value text-2xl font-bold text-blue-600">--</div>
+            </div>
+            <div class="faithful-card">
+                <div class="detail-label">batisimu</div>
+                <div class="detail-value text-2xl font-bold text-green-600">--</div>
+            </div>
+            <div class="faithful-card">
+                <div class="detail-label">ugukomezwa</div>
+                <div class="detail-value text-2xl font-bold text-purple-600">--</div>
+            </div>
+            <div class="faithful-card">
+                <div class="detail-label">ugushyingirwa</div>
+                <div class="detail-value text-2xl font-bold text-red-600">--</div>
+            </div>
+            <div class="faithful-card">
+                <div class="detail-label">abihayimana</div>
+                <div class="detail-value text-2xl font-bold text-red-600">--</div>
+            </div>
+            <div class="faithful-card">
+                <div class="detail-label">ubusaserdoti</div>
+                <div class="detail-value text-2xl font-bold text-red-600">--</div>
+            </div>
+            <div class="faithful-card">
+                <div class="detail-label">abapfuye</div>
+                <div class="detail-value text-2xl font-bold text-red-600">--</div>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+<footer class="text-center py-6 text-gray-500">
+    <p>&copy; 2026 Parish Management System.</p>
+</footer>
+
+<script>
+    function navigateToFaithful() {
+        window.location.href = '/faithful';
+    }
+     function navigateToSacramentInfo() {
+        window.location.href = '/sacrament-info';
+    }
+    function navigateToDonations() {
+        window.location.href = '/donations';
+    }
+</script>
+
+</body>
+</html>

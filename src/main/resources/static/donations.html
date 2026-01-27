@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="rw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abakristu n'amaturo yabo - Parish Management</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50">
+<!-- Main Container -->
+<div class="container mx-auto px-4 py-6 max-w-7xl">
+    <!-- Header -->
+    <div class="mb-6">
+        <h1 class="text-3xl font-bold text-blue-600 mb-4">Abakristu n'amaturo yabo</h1>
+
+        <!-- Navigation Buttons -->
+        <div class="flex gap-3 mb-4">
+            <button id="homeButton" onclick="navigateToHome()" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition">
+                AHABANZA
+            </button>
+            <button id="showSummaryButton" class="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 transition">
+                IBITERANYO BY'AMATURO
+            </button>
+            <button id="overallSummaryButton" class="px-4 py-2 bg-purple-500 text-white rounded hover:bg-purple-600 transition">
+                IMBONERAHAMWE Y'AMATURO
+            </button>
+        </div>
+
+        <!-- Filter Section -->
+        <div class="bg-white p-4 rounded-lg shadow-sm flex gap-3 items-center flex-wrap">
+            <label class="text-sm font-medium text-gray-700">Santarali:</label>
+            <select id="filterSubParishComboBox" class="px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <option value="">Hitamo Santarali...</option>
+            </select>
+
+            <label class="text-sm font-medium text-gray-700">Impuza:</label>
+            <select id="filterBecComboBox" class="px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" disabled>
+                <option value="">Hitamo impuza...</option>
+            </select>
+
+            <input id="searchFaithfulTextField" type="text" placeholder="Shakisha amazina..."
+                   class="flex-1 px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+
+            <button id="clearFiltersButton" class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition">
+                Siba Filteri
+            </button>
+        </div>
+    </div>
+
+    <!-- Split Pane Layout -->
+    <div class="grid grid-cols-1 lg:grid-cols-5 gap-4">
+        <!-- Left Panel - Faithfuls Table -->
+        <div class="lg:col-span-2 bg-white rounded-lg shadow-md p-4">
+            <h2 class="text-lg font-bold mb-3 text-gray-800">Abakristu</h2>
+
+            <!-- Faithfuls Table -->
+            <div class="overflow-x-auto mb-3" style="max-height: 400px;">
+                <table id="faithfulsTable" class="w-full text-sm">
+                    <thead class="bg-gray-100 sticky top-0">
+                    <tr>
+                        <th class="px-3 py-2 text-left font-semibold">Amazina</th>
+                        <th class="px-3 py-2 text-left font-semibold">Impuza</th>
+                        <th class="px-3 py-2 text-left font-semibold">Santarali</th>
+                    </tr>
+                    </thead>
+                    <tbody id="faithfulsTableBody" class="divide-y divide-gray-200">
+                    <!-- Rows populated by TypeScript -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Faithful Action Buttons -->
+            <div class="flex gap-2 justify-center">
+                <button id="addNewFaithfulBtn" class="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 transition text-sm">
+                    Ongeraho undi mushya
+                </button>
+                <button id="editFaithfulBtn" class="px-4 py-2 bg-yellow-500 text-white rounded hover:bg-yellow-600 transition text-sm" disabled>
+                    Hindura
+                </button>
+                <button id="deleteFaithfulBtn" class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition text-sm" disabled>
+                    Siba
+                </button>
+            </div>
+        </div>
+
+        <!-- Right Panel - Faithful Details & Contributions -->
+        <div class="lg:col-span-3 bg-white rounded-lg shadow-md p-4">
+            <!-- Faithful Details -->
+            <h2 class="text-lg font-bold mb-3 text-gray-800">Umwirondoro we</h2>
+            <div class="grid grid-cols-2 gap-3 mb-4 text-sm">
+                <div><span class="font-semibold">Amazina:</span></div>
+                <div id="detailNameLabel" class="text-gray-700">-</div>
+
+                <div><span class="font-semibold">Telefone:</span></div>
+                <div id="detailContactLabel" class="text-gray-700">-</div>
+
+                <div><span class="font-semibold">Address:</span></div>
+                <div id="detailAddressLabel" class="text-gray-700">-</div>
+
+                <div><span class="font-semibold">Impuza:</span></div>
+                <div id="detailBecLabel" class="text-gray-700">-</div>
+
+                <div><span class="font-semibold">Santarali:</span></div>
+                <div id="detailSubParishLabel" class="text-gray-700">-</div>
+
+                <div><span class="font-semibold">Umwaka yabatijwemo:</span></div>
+                <div id="detailBaptismYearLabel" class="text-gray-700">-</div>
+
+                <div><span class="font-semibold">Icyo akora:</span></div>
+                <div id="detailOccupationLabel" class="text-gray-700">-</div>
+            </div>
+
+            <hr class="my-4 border-gray-300">
+
+            <!-- Contributions Section -->
+            <h2 class="text-lg font-bold mb-3 text-gray-800">Amaturo ye</h2>
+            <div class="overflow-x-auto mb-3" style="max-height: 250px;">
+                <table id="contributionsTable" class="w-full text-sm">
+                    <thead class="bg-gray-100 sticky top-0">
+                    <tr>
+                        <th class="px-3 py-2 text-left font-semibold">Umwaka</th>
+                        <th class="px-3 py-2 text-left font-semibold">Ituro (RWF)</th>
+                        <th class="px-3 py-2 text-left font-semibold">Itariki</th>
+                    </tr>
+                    </thead>
+                    <tbody id="contributionsTableBody" class="divide-y divide-gray-200">
+                    <!-- Rows populated by TypeScript -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Contribution Action Buttons -->
+            <div class="flex gap-2 justify-center">
+                <button id="addContributionBtn" class="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 transition text-sm" disabled>
+                    Ongeraho ituro
+                </button>
+                <button id="editContributionBtn" class="px-4 py-2 bg-yellow-500 text-white rounded hover:bg-yellow-600 transition text-sm" disabled>
+                    Hindura
+                </button>
+                <button id="deleteContributionBtn" class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition text-sm" disabled>
+                    Siba
+                </button>
+                <button id="generatePDFBtn" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition text-sm" disabled>
+                    Hindura PDF
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Status Message -->
+    <div id="statusMessage" class="mt-4 p-4 rounded hidden"></div>
+</div>
+
+<!-- Add/Edit Donation Modal -->
+<div id="donationModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+    <div class="bg-white rounded-lg shadow-xl max-w-2xl w-full mx-4 max-h-[90vh] overflow-y-auto">
+        <div class="p-6">
+            <h2 id="modalTitle" class="text-2xl font-bold mb-4 text-blue-600">ITURO RISHYA</h2>
+
+            <form id="donationForm">
+                <!-- Faithful Name Display -->
+                <div class="mb-4 p-3 bg-blue-50 rounded">
+                    <p class="font-semibold text-blue-800" id="modalFaithfulName">ITURO RYA: </p>
+                </div>
+
+                <!-- Amount -->
+                <div class="mb-4">
+                    <label class="block text-sm font-medium mb-2">Amafaranga <span class="text-red-500">*</span></label>
+                    <input type="number" id="modalAmount" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                           placeholder="Shyiramo amafaranga" min="100" step="100" required>
+                </div>
+
+                <!-- Year -->
+                <div class="mb-4">
+                    <label class="block text-sm font-medium mb-2">Umwaka <span class="text-red-500">*</span></label>
+                    <select id="modalYear" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                    </select>
+                </div>
+
+                <!-- Date -->
+                <div class="mb-4">
+                    <label class="block text-sm font-medium mb-2">Itariki <span class="text-red-500">*</span></label>
+                    <input type="date" id="modalDate" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                </div>
+
+                <!-- Contribution Type -->
+                <div class="mb-4">
+                    <label class="block text-sm font-medium mb-2">Ubwoko bw'ituro</label>
+                    <select id="modalContributionType" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <option value="TITHE">Icumi</option>
+                        <option value="OFFERING">Ituro risanzwe</option>
+                        <option value="SPECIAL_COLLECTION">Ituro ridasanzwe</option>
+                        <option value="BUILDING_FUND">Ituro ryo kubaka</option>
+                    </select>
+                </div>
+
+                <!-- Payment Method -->
+                <div class="mb-4">
+                    <label class="block text-sm font-medium mb-2">Uburyo bwo kwishyura</label>
+                    <select id="modalPaymentMethod" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <option value="CASH">Amafaranga y'agaciro</option>
+                        <option value="MOBILE_MONEY">Mobile Money</option>
+                        <option value="BANK_TRANSFER">Banki</option>
+                        <option value="CHECK">Cheque</option>
+                    </select>
+                </div>
+
+                <!-- Notes -->
+                <div class="mb-4">
+                    <label class="block text-sm font-medium mb-2">Inyandiko</label>
+                    <textarea id="modalNotes" rows="3" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                              placeholder="Andi makuru..."></textarea>
+                </div>
+
+                <!-- Modal Actions -->
+                <div class="flex gap-3 justify-end">
+                    <button type="button" id="modalCancelBtn" class="px-6 py-2 bg-gray-300 text-gray-700 rounded hover:bg-gray-400 transition">
+                        BIREKE
+                    </button>
+                    <button type="submit" id="modalSaveBtn" class="px-6 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition">
+                        BIKA
+                    </button>
+                </div>
+            </form>
+
+            <div id="modalStatus" class="mt-4 p-3 rounded hidden"></div>
+        </div>
+    </div>
+</div>
+
+<script type="module" src="donations.ts" defer></script>
+<script>
+    function navigateToHome() {
+        window.location.href = '/';
+    }
+</script>
+</body>
+</html>
