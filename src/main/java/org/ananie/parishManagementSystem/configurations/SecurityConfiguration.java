@@ -19,6 +19,7 @@ public class SecurityConfiguration {
                         // 1. Allow public access to all /hello paths
                         .requestMatchers( "/hello/**").permitAll()
                         .requestMatchers("/api/**").permitAll()
+                        .requestMatchers("/", "/index.html", "/assets/**", "/*.js", "/*.css").permitAll()
 
                         // 2. Allow access to the default Spring Security login page
                         .requestMatchers("/login").permitAll()
@@ -26,9 +27,9 @@ public class SecurityConfiguration {
 
                         // 3. Require authentication for everything else
                         .anyRequest().authenticated()
-                )
+               // )
                 // 4. Configure Form-based Login
-                .formLogin(AbstractAuthenticationFilterConfigurer::permitAll // Ensure the login form itself is publicly accessible
+               // .formLogin(AbstractAuthenticationFilterConfigurer::permitAll // Ensure the login form itself is publicly accessible
                 );
         // We remove the .httpBasic() call here
 

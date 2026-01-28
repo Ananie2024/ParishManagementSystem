@@ -16,10 +16,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class HelloController {
 
     // 1. Serves the main landing page (HTML)
-    @GetMapping
+   /* @GetMapping
     public String showLandingPage() {
         return "index"; // Returns index.html template
-    }
+    } */
 
     // 2. Serves the faithful management page (HTML)
     @GetMapping("/faithful")
