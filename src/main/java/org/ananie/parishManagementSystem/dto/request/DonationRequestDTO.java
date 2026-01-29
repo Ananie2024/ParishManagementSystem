@@ -1,4 +1,4 @@
-package org.ananie.parishManagementSystem.dto;
+package org.ananie.parishManagementSystem.dto.request;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.*;
@@ -11,62 +11,72 @@ import java.time.LocalDate;
 
 /**
  * ====================================================================
- * DTO for updating an existing donation
- * All fields are optional to allow partial updates
+ * DTO for creating a new donation (Request from client)
  * ====================================================================
  */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class DonationUpdateDTO {
+public class DonationRequestDTO {
 
     /**
-     * Updated year (optional).
+     * ID of the faithful member making the donation (required).
      */
+    @NotNull(message = "Faithful ID is required")
+    @Positive(message = "Faithful ID must be a positive number")
+    private Long faithfulId;
+
+    /**
+     * Year for which the donation is designated (required).
+     */
+    @NotNull(message = "Year is required")
     @Min(value = 1900, message = "Year must be 1900 or later")
-    @Max(value = 2100, message = "Year must be 2100 or earlier")
     private Integer year;
 
     /**
-     * Updated amount (optional).
+     * Amount of the donation (required, must be positive).
      */
+    @NotNull(message = "Amount is required")
     @DecimalMin(value = "0.01", message = "Amount must be greater than zero")
     @Digits(integer = 10, fraction = 2, message = "Amount must have at most 10 digits and 2 decimal places")
     private BigDecimal amount;
 
     /**
-     * Updated date (optional).
+     * Date when the donation was made (required).
      */
+    @NotNull(message = "Date is required")
     @PastOrPresent(message = "Date cannot be in the future")
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate date;
 
     /**
-     * Updated contribution type (optional).
+     * Type of donation (optional but recommended).
+     * Examples: TITHE, OFFERING, SPECIAL_COLLECTION, BUILDING_FUND
      */
     @Size(max = 50, message = "Contribution type must not exceed 50 characters")
     private String contributionType;
 
     /**
-     * Updated payment method (optional).
+     * Payment method (optional).
+     * Examples: CASH, MOBILE_MONEY, BANK_TRANSFER, CHECK
      */
     @Size(max = 50, message = "Payment method must not exceed 50 characters")
     private String paymentMethod;
 
     /**
-     * Updated reference number (optional).
+     * Reference number for electronic payments or checks (optional).
      */
     @Size(max = 100, message = "Reference number must not exceed 100 characters")
     private String referenceNumber;
 
     /**
-     * Updated notes (optional).
+     * Additional notes about the donation (optional).
      */
     @Size(max = 500, message = "Notes must not exceed 500 characters")
     private String notes;
 
     /**
-     * Updated recorder name (optional).
+     * Name of the person recording this donation (optional).
      */
     @Size(max = 100, message = "Recorder name must not exceed 100 characters")
     private String recordedBy;

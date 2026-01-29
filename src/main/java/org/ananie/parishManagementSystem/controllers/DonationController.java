@@ -1,8 +1,11 @@
 package org.ananie.parishManagementSystem.controllers;
 
 import jakarta.validation.Valid;
-import org.ananie.parishManagementSystem.dto.*;
-import org.ananie.parishManagementSystem.services.DonationService;
+import org.ananie.parishManagementSystem.dto.request.DonationRequestDTO;
+import org.ananie.parishManagementSystem.dto.request.DonationUpdateDTO;
+import org.ananie.parishManagementSystem.dto.response.DonationResponseDTO;
+import org.ananie.parishManagementSystem.dto.response.DonationSummaryDTO;
+import org.ananie.parishManagementSystem.service.DonationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
@@ -15,7 +18,6 @@ import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 /**
  * REST Controller for managing donations/contributions.

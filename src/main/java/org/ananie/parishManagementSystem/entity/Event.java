@@ -3,6 +3,8 @@ package org.ananie.parishManagementSystem.entity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
+import lombok.Getter;
+import lombok.Setter;
 import org.ananie.parishManagementSystem.utilities.EventType;
 
 import java.time.LocalDate;
@@ -13,6 +15,8 @@ import java.time.LocalTime;
 @Table(name = "events")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn( name = "event_category", discriminatorType = DiscriminatorType.STRING)
+@Getter
+@Setter
 
 public class Event {
     @Id
@@ -32,12 +36,6 @@ public class Event {
     @Column(name="event_date")
     private LocalDate eventDate;
 
-    @Column(name = "start_time")
-    private LocalTime startTime;
-
-    @Column(name = "end_time")
-    private LocalTime endTime;
-
     @NotBlank( message = "location is required")
     private String location;
 
@@ -53,6 +51,9 @@ public class Event {
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
 
+    @Column(name = "updated_at")
+    private LocalDateTime updatedAt;
+
     @Column(name = "visibility")
     private boolean isPublic;
 
@@ -61,5 +62,9 @@ public class Event {
         if (createdAt == null) {
             createdAt = LocalDateTime.now();
         }
+    }
+    @PreUpdate
+    protected void onUpdate() {
+        this.updatedAt = LocalDateTime.now();
     }
 }

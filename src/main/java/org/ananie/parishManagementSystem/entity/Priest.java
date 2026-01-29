@@ -11,6 +11,7 @@ import lombok.Setter;
 import org.ananie.parishManagementSystem.utilities.PriestType;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -49,4 +50,21 @@ public class Priest {
 
     @Column(name = "profile_picture_url")
     private String profilePictureUrl;
+
+    @Column (name = "is_assigned")
+    private boolean isAssigned = true;
+
+    // --- 9. METADATA ---
+    @Column(name = "created_at", nullable = false, updatable = false)
+    private LocalDateTime createdAt;
+
+    @Column(name = "updated_at")
+    private LocalDateTime updatedAt;
+
+
+    @PrePersist
+    protected void onCreate() {
+        this.createdAt = LocalDateTime.now();
+        this.updatedAt = LocalDateTime.now();
+    }
 }

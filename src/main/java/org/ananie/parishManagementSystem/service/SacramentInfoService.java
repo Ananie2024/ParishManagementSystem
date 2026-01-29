@@ -1,7 +1,7 @@
-package org.ananie.parishManagementSystem.services;
+package org.ananie.parishManagementSystem.service;
 
 import lombok.RequiredArgsConstructor;
-import org.ananie.parishManagementSystem.dto.FaithfulSacramentInfoDTO;
+import org.ananie.parishManagementSystem.dto.response.FaithfulSacramentInfoDTO;
 import org.ananie.parishManagementSystem.entity.Faithful;
 import org.ananie.parishManagementSystem.repository.FaithfulRepository;
 import org.springframework.stereotype.Service;

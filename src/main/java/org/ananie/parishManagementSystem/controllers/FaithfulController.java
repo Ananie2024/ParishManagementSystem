@@ -1,9 +1,9 @@
 package org.ananie.parishManagementSystem.controllers;
 
-import org.ananie.parishManagementSystem.dto.ApiResponse;
-import org.ananie.parishManagementSystem.dto.CreateFaithfulRequest;
-import org.ananie.parishManagementSystem.dto.FaithfulDTO;
-import org.ananie.parishManagementSystem.services.FaithfulService;
+import org.ananie.parishManagementSystem.dto.response.ApiResponse;
+import org.ananie.parishManagementSystem.dto.request.CreateFaithfulRequest;
+import org.ananie.parishManagementSystem.dto.response.FaithfulDTO;
+import org.ananie.parishManagementSystem.service.FaithfulService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

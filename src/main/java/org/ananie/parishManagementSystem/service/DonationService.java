@@ -1,6 +1,9 @@
-package org.ananie.parishManagementSystem.services;
+package org.ananie.parishManagementSystem.service;
 
-import org.ananie.parishManagementSystem.dto.*;
+import org.ananie.parishManagementSystem.dto.request.DonationRequestDTO;
+import org.ananie.parishManagementSystem.dto.request.DonationUpdateDTO;
+import org.ananie.parishManagementSystem.dto.response.DonationResponseDTO;
+import org.ananie.parishManagementSystem.dto.response.DonationSummaryDTO;
 import org.ananie.parishManagementSystem.entity.Donation;
 import org.ananie.parishManagementSystem.entity.Faithful;
 import org.ananie.parishManagementSystem.repository.DonationRepository;

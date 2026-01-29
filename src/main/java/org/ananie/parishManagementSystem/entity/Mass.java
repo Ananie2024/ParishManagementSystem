@@ -1,6 +1,8 @@
 package org.ananie.parishManagementSystem.entity;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 import org.ananie.parishManagementSystem.utilities.LiturgicalSeason;
 import org.ananie.parishManagementSystem.utilities.MassType;
 
@@ -9,6 +11,8 @@ import java.util.List;
 
 @Entity
 @DiscriminatorValue("MASS")
+@Getter
+@Setter
 
 public class Mass extends Event {
 
@@ -36,6 +40,8 @@ public class Mass extends Event {
             inverseJoinColumns = @JoinColumn(name = "priest_id")
     )
     private List<Priest> concelebrants = new ArrayList<>();
+
     @OneToMany(mappedBy = "mass", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Intention> intentions = new ArrayList<>();
+
 }

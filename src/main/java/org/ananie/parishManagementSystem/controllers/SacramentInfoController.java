@@ -1,8 +1,8 @@
 package org.ananie.parishManagementSystem.controllers;
 
 import lombok.RequiredArgsConstructor;
-import org.ananie.parishManagementSystem.dto.FaithfulSacramentInfoDTO;
-import org.ananie.parishManagementSystem.services.SacramentInfoService;
+import org.ananie.parishManagementSystem.dto.response.FaithfulSacramentInfoDTO;
+import org.ananie.parishManagementSystem.service.SacramentInfoService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

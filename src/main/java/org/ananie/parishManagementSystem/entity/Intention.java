@@ -36,14 +36,8 @@ public class Intention {
     @Column(name = "requested_date")
     private LocalDate requestedDate;
 
-    @Column(name = "offering_amount")
-    private BigDecimal offeringAmount;
-
     @Column(name = "is_paid")
-    private boolean isPaid = false;
-
-    @Column(name = "is_fulfilled")
-    private boolean isFulfilled = false;
+    private boolean isPaid = true;
 
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
@@ -56,11 +50,8 @@ public class Intention {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "faithful_id")
     private Faithful faithful;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "requested_by_priest_id")
-    private Priest requestedByPriest;
-
+    @Column(name = "external_faithful_name")
+    private String externalFaithfulName;
 
     @PrePersist
     protected void onCreate() {
@@ -72,5 +63,4 @@ public class Intention {
         }
     }
 
-    // Getters and setters...
 }

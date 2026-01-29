@@ -1,4 +1,4 @@
-package org.ananie.parishManagementSystem.dto;
+package org.ananie.parishManagementSystem.dto.request;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import jakarta.validation.constraints.NotBlank;

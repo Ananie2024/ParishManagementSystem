@@ -1,8 +1,7 @@
-package org.ananie.parishManagementSystem.services;
+package org.ananie.parishManagementSystem.service;
 
-import org.ananie.parishManagementSystem.dto.CreateFaithfulRequest;
-import org.ananie.parishManagementSystem.dto.FaithfulDTO;
-import org.ananie.parishManagementSystem.dto.FaithfulSacramentInfoDTO;
+import org.ananie.parishManagementSystem.dto.request.CreateFaithfulRequest;
+import org.ananie.parishManagementSystem.dto.response.FaithfulDTO;
 import org.ananie.parishManagementSystem.entity.Faithful;
 import org.ananie.parishManagementSystem.entity.LapseEvent;
 import org.ananie.parishManagementSystem.entity.Ministry;

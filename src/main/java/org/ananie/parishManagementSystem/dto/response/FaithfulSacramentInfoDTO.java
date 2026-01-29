@@ -1,4 +1,4 @@
-package org.ananie.parishManagementSystem.dto;
+package org.ananie.parishManagementSystem.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

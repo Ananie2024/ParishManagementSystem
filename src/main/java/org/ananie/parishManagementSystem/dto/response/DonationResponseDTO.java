@@ -1,4 +1,4 @@
-package org.ananie.parishManagementSystem.dto;
+package org.ananie.parishManagementSystem.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
